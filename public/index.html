@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumentation GUI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="grid-container">
+        <div class="temperature-container grid-box">
+            <h2>Temperature</h2>
+            <div class="grid-content">
+                <p id="temperature-value">-- C</p>
+                <h2 class="sensor-name">TMP36</h2>
+            </div>
+
+        </div>
+
+        <div class="rpm-container grid-box">
+            <h2>Motor Speed</h2>
+            <div class="grid-content">
+                <p id="rpm-value">-- RPM</p>
+            </div>
+
+        </div>
+
+        <div class="pwm-container grid-box">
+            <h2>PWM</h2>
+            <div class="grid-content">
+                <p id="pwm-value">--</p>
+            </div>
+        </div>
+
+        <div class="setpoint-container grid-box">
+            <h2>Set Point</h2>
+            <div class="grid-content">
+                <p id="setpoint-value">--</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        const socket = io();
+
+        // Receive data from Node.js
+        socket.on("dashboard-data", data => {
+            document.getElementById("temperature-value").textContent =
+                data.temp.toFixed(2) + " °C";
+
+            document.getElementById("rpm-value").textContent =
+                data.rpm.toFixed(0) + " RPM";
+
+            document.getElementById("pwm-value").textContent =
+                data.pwm + " PWM";
+
+            document.getElementById("setpoint-value").textContent =
+                data.setpoint.toFixed(0) + " RPM";
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+</body>
+
+</html>

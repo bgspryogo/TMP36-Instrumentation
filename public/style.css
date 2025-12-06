@@ -1,0 +1,59 @@
+:root {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.grid-box {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    background-color: rgb(233, 233, 233);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.grid-content {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: 100vw;
+    height: 100vh;
+}
+
+.temperature-container {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.rpm-container {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.pwm-container {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.setpoint-container {
+    grid-area: 2 / 2 / 3 / 3;
+}
