@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Serve public/ folder
+// Serve public dashboard folder
 app.use(express.static("public"));
 
 // ===== CSV LOG SETUP =====
@@ -20,8 +20,8 @@ if (!fs.existsSync(LOG_FILE)) {
 
 // ===== SERIAL PORT CONFIG =====
 const port = new SerialPort({
-    path: "/dev/ttyUSB0",   //Ganti sesuai nama port, ex >> Windows: COM3/COM4
-    baudRate: 9600
+    path: "/dev/ttyUSB0",     // Change to COM3, COM4, etc on Windows
+    baudRate: 115200
 });
 
 const parser = port.pipe(new ReadlineParser({ delimiter: "\n" }));
@@ -31,7 +31,7 @@ parser.on("data", (line) => {
     console.log("RX:", line);
 
     const parts = line.split(",");
-    if (parts.length !== 4) return; // Skip incorrect data
+    if (parts.length !== 4) return;  // Ensure correct data format
 
     const temp = parseFloat(parts[0]);
     const setpoint = parseFloat(parts[1]);
@@ -46,7 +46,7 @@ parser.on("data", (line) => {
         pwm
     });
 
-    // Append to log CSV
+    // Write row to CSV log
     const row = `${Date.now()},${temp},${setpoint},${rpm},${pwm}\n`;
     fs.appendFile(LOG_FILE, row, (err) => {
         if (err) console.error("CSV Write Error:", err);
