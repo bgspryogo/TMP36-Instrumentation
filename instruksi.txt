@@ -8,12 +8,9 @@ npm --version
 3. buka cmd/powershell, arahin ke directory file ini
 cd C/User/....(ganti aja sama nama directorynya)
 
-4. install serialport & socket.io (package node.js buat baca serial data) 
-npm install express socket.io serialport
-
-5. run command node data.js di terminal yg sama buat run file instrumennya
+4. run command node data.js di terminal yg sama buat run file instrumennya
 tekan ctrl + c buat berhenti
 
-6. buat buka gui nya, buka http://localhost:3000
+5. buat buka gui nya, buka http://localhost:3000
 
 
